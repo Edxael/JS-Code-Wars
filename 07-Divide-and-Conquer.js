@@ -1,4 +1,3 @@
-
 function search(array, value) {
     var copis = array.slice(0);
 
