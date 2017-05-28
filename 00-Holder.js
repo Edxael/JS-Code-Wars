@@ -1,39 +1,31 @@
 
-function josephus(items,k){
-    var fallen = [];
-    console.log(items);
-    console.log(fallen);
-    console.log("");
 
-    reaper = 0;
-    index = 0;
+function consecutiveOnes(nums) {
+      // console.log(nums);
+      var count = 0;
+      var max = 0;
+      var pre = null;
 
-    var cycles = 30;
-    var current = 1;
+      for (i=0; i<nums.length; i++){
+            // console.log("Current Number is: " + nums[i]);
+            // console.log("Pre value is: " + pre);
 
-    do{
-        console.log("Cycle: ", current, "  Typeof: ", items[index]);
-        if((typeof items[index]) === 'number'){reaper += 1;}
+            if (nums[i] !== pre){
+                  count = 0;
+                  // console.log("Reset Count");
+            }
 
-        console.log("Reaper: ", reaper, " Index: ", index );
-        console.log(items);
-        console.log(fallen);
-        console.log(" ");
+            if (nums[i] === pre ){
+                  count = count +1;
+                  // console.log("Incrementing Count to:" + count);
+                  if (count > max){
+                        max = count;
+                        // console.log("Udate Max to" + max);
+                  }
+            }
 
-
-
-
-        if(reaper === 3){
-            fallen.push(items[index]);
-            items[index] = ".";
-            reaper = 0;
-        }
-
-
-        index += 1;
-        if(index >= items.length){index = 0;}
-        current += 1;
-    }while (fallen.length < items.length)
-
-    return fallen;
+            // console.log(" ");
+            pre = nums[i];
+      }
+      return max +1;
 }
