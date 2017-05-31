@@ -1,3 +1,6 @@
+// Location:
+// https://www.codewars.com/kata/sum-strings-as-numbers
+
 function sumStrings(a,b) {
     if(a === ''){a = '0'}
     if(b === ''){b = '0'}
