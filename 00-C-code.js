@@ -1,43 +1,60 @@
-function sumStrings(a,b) {
-    if(a === ''){a = '0'}
-    if(b === ''){b = '0'}
 
-    var arrA = a.split("").reverse();
-    var arrB = b.split("").reverse();
-    var arrC = [];
-    var hoder = 0;
-    var paso = 0;
-    var strH = '';
-    var cycles = 0;
+function codewarsTshirts(n, orders) {
+    var available = { White: 0, Orange: 0, Blue: 0, Purple: 0, Red: 0, Black: 0 }
+    for(x in available){ available[x] = n / 6;}
+    var completed = [];
+    var record = [];
 
-    for(x in arrA){arrA[x] = parseInt(arrA[x]);}
-    for(x in arrB){arrB[x] = parseInt(arrB[x]);}
-    if(arrA.length > arrB.length){cycles = arrA.length;}else {cycles = arrB.length;}
+    for(x in orders){
 
-    for(var x = 0; x < cycles; x++){
-        if(isNaN(arrB[x])){arrB[x] = 0}
-        if(isNaN(arrA[x])){arrA[x] = 0}
-        holder = arrA[x] + arrB[x] + paso;
-        paso = 0;
+        if(available[orders[x][0]] !== 0){
+            completed.push(1);
+            available[orders[x][0]] -= 1;
+            record.push([orders[x][0], orders[x][1], orders[x][0]]);
 
-        if(holder > 9){
-            paso = parseInt(holder.toString()[0]);
-            holder = parseInt(holder.toString()[1]);
+        }else if((available[orders[x][1]] !== 0)){
+            completed.push(1);
+            available[orders[x][1]] -= 1;
+            record.push([orders[x][0], orders[x][1], orders[x][1]]);
+
+
+        }else {
+            var breaker = 0;
+            for(z in record){
+
+                if(orders[x][0] === record[z][2]){
+
+                    if(available[record[z][0]] !== 0){
+                        completed.push(1);
+                        available[record[z][0]] -= 1;
+                        break;
+                    }
+                    else if(available[record[z][1]] !== 0){
+                        completed.push(1);
+                        available[record[z][1]] -= 1;
+                        break;
+                    }
+                }else if(orders[x][1] === record[z][2]){
+
+                    if(available[record[z][0]] !== 0){
+                        completed.push(1);
+                        available[record[z][0]] -= 1;
+                        break;
+                    }
+                    else if(available[record[z][1]] !== 0){;
+                        completed.push(1);
+                        available[record[z][1]] -= 1;
+                        break;
+                    }
+                }
+
+                breaker += 1;
+                if(breaker === record.length){
+                    completed.push(0)
+                };
+            }
         }
-
-        arrC.push(holder);
-        if(((x + 1) === cycles) && (paso > 0)){arrC.push(paso);}
     }
 
-    arrA.reverse();
-    arrB.reverse();
-    arrC.reverse();
-
-    if(arrC[0] === 0){arrC.shift()}
-    strH = arrC.join("");
-    return strH;
+    return completed.every((o) => {return o === 1});
 }
-
-var a = '800';
-var b = '9567';
-console.log(sumStrings(a,b));
