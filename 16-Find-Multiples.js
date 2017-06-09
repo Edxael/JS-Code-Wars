@@ -1,4 +1,5 @@
-console.log("This is a out side script");
+
+console.log("Find Multiples");
 
 function findMultiples(int,limit){
     var holder = 0;
