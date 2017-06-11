@@ -1,3 +1,5 @@
+// Basic creation of the Fizz-Buzz Game
+
 console.log("Hello Fizz-Buzz");
 console.log("");
 

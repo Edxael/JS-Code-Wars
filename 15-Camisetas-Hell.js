@@ -1,3 +1,6 @@
+// Camisetas Algorithm
+
+
 function codewarsTshirts(n, orders) {
     var available = { White: 0, Orange: 0, Blue: 0, Purple: 0, Red: 0, Black: 0 }
     console.log("Max: ", (n / 6));

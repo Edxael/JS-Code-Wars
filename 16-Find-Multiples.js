@@ -1,4 +1,4 @@
-
+  // Finding multiples of a number
 console.log("Find Multiples");
 
 function findMultiples(int,limit){
